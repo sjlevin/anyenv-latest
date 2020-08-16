@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+#
+# Summary: Installs xxenv-latest in all environments
+#
+# Usage: anyenv latest install
+#
+# For detailed information, see: https://github.com/sjlevin/anyenv-latest
+
+set -e
+[ -n "$ANYENV_DEBUG" ] && set -xe
+
+if [ "$1" = "--complete" ]; then
+  echo install
+  echo --help
+  exit
+fi
+
+COMMAND=${0##*/}; COMMAND=${COMMAND%%-*}
+SUBCOMMAND="$1"
+
+xxenv_latest_install() {
+    for env in $(anyenv envs); do
+        DESTINATION="$($env root)/plugins/xxenv-latest"
+        # echo $DESTINATION
+        if [ -d $DESTINATION ]
+        then
+            echo "$DESTINATION already exists"
+        else
+            git clone https://github.com/momo-lab/xxenv-latest.git $DESTINATION
+        fi
+    done
+}
+
+case "$SUBCOMMAND" in
+    "" | -h | --help)
+        $COMMAND help latest
+        ;;
+    install)
+        xxenv_latest_install
+        ;;
+    *)
+        echo "no such command $SUBCOMMAND" >&2
+        echo
+        $COMMAND help latest
+        ;;
+esac
