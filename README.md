@@ -1,5 +1,5 @@
 # anyenv-latest
-This is an [anyenv](https://github.com/anyenv/anyenv) plugin that provides `anyenv latest` command to install [xxenv-latest](https://github.com/anyenv/anyenv) in all \*\*env versions found in `$ANYENV_ROOT/envs/*`.
+This is an [anyenv](https://github.com/anyenv/anyenv) plugin that provides `anyenv latest` command to install [xxenv-latest](https://github.com/momo-lab/xxenv-latest) in all \*\*env versions found in `$ANYENV_ROOT/envs/*`.
 
 ## Installation
 
